@@ -1,4 +1,3 @@
-import React from 'react'
 import propTypes from 'prop-types'
 
 const TodoItem = ({ description }) => {
@@ -11,7 +10,6 @@ const TodoItem = ({ description }) => {
         </li>
     )
 }
-
 TodoItem.propTypes = {
     description: propTypes.string.isRequired
 }

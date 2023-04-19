@@ -18,6 +18,11 @@ const initialState = [
 
 export const TodoApp = () => {
     const [todos, dispatch] = useReducer(todoReducer, initialState)
+
+    const handleNewTodo = (todo) => {
+        console.log({ todo })
+    }
+
     return (
         <>
             <h1>TODO APP: 10,  <small>Pendientes: 2 </small> </h1>
@@ -25,28 +30,11 @@ export const TodoApp = () => {
             <div className="row">
                 <div className="col-7">
                     <TodoList todos={todos} />
-                    {/* <ul className="list-group">
-                        <li className="list-group-item d-flex justify-content-between">
-                            <span className="align-self-center">
-                                Item 1
-                            </span>
-                            <button className="btn btn-danger">borrar</button>
-                        </li>
-                    </ul> */}
                 </div>
                 <div className="col-5" >
                     <h4>Agregar todo</h4>
                     <hr />
-                    <TodoAdd onNewTodo={(n) => console.log({ n })} />
-                    {/* <form >
-                        <input type="text"
-                            placeholder="Qué hay que hacer?"
-                            className="form-control"
-                        />
-                        <button type="submit"
-                            className="btn btn-outline-primary mt-1"
-                        > agregar</button>
-                    </form> */}
+                    <TodoAdd onNewTodo={handleNewTodo} />
                 </div>
             </div>
         </>

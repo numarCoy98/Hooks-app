@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 // import PropTypes from 'prop-types'
 
 const TodoAdd = ({ onNewTodo }) => {
@@ -8,7 +8,11 @@ const TodoAdd = ({ onNewTodo }) => {
         event.preventDefault();
         const cleanValue = inputValue.trim()
         if (cleanValue) {
-            onNewTodo(cleanValue)
+            onNewTodo({
+                id: new Date().getTime(),
+                description: cleanValue,
+                done: false
+            })
             setInputValue('')
         }
     }
