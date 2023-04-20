@@ -1,3 +1,4 @@
+import { UserProvider } from "./context/UserProvider"
 import { Navigate, Route, Routes, Link } from "react-router-dom"
 import { AboutPage } from "./AboutPage"
 import { HomePage } from "./HomePage"
@@ -13,8 +14,7 @@ export const MainApp = () => {
     ]
 
     return (
-        <>
-            <h1>MainApp</h1>
+        <UserProvider>
             <NavBar links={links} />
             <hr />
             <Routes>
@@ -27,6 +27,6 @@ export const MainApp = () => {
                 <Route path="/*" element={<Navigate to='/' />} />
 
             </Routes>
-        </>
+        </UserProvider>
     )
 }
