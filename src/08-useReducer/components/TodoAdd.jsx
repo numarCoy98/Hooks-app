@@ -1,28 +1,32 @@
 import { useState } from 'react'
+import { useForm } from '../../hooks/useForm'
 // import PropTypes from 'prop-types'
 
 const TodoAdd = ({ onNewTodo }) => {
-    const [inputValue, setInputValue] = useState('')
+
+    const { state: { description }, onInputChange, onResetForm } = useForm({ description: '' })
+    // const [inputValue, setInputValue] = useState('')
 
     const onSubmit = (event) => {
         event.preventDefault();
-        const cleanValue = inputValue.trim()
+        const cleanValue = description.trim()
         if (cleanValue) {
             onNewTodo({
                 id: new Date().getTime(),
-                description: cleanValue,
+                description,
                 done: false
             })
-            setInputValue('')
+            onResetForm()
         }
     }
     return (
         <form onSubmit={onSubmit} >
             <input type="text"
+                name='description'
                 placeholder="Qué hay que hacer?"
                 className="form-control"
-                onChange={({ target: { value } }) => setInputValue(value)}
-                value={inputValue}
+                onChange={onInputChange}
+                value={description}
             />
             <button type="submit"
                 className="btn btn-outline-primary mt-1"
